@@ -1,0 +1,26 @@
+[
+  {
+    "bike_id": "01",
+    "title": "Awesome bike",
+    "img": "https://i.ibb.co/LzBhgpg/bike.jpg",
+    "price": "70,000tk to 2,00,000tk",
+    "condition": "recondition",
+    "description": "we brings new collection for you . we have few recondition suzuki, yamaha, honda and many  bike which can make you feel new bike . "
+  },
+  {
+    "bike_id": "02",
+    "title": "Scooter",
+    "img": "https://i.ibb.co/M8Xbc3s/scooter.jpg",
+    "price": "60,000tk to 1,50,000tk",
+    "condition": "recondition",
+    "description": "Now a days all kind of people like scooter. it is more safe and easy than bike . so male and female both want this . we have some fresh condition scooter for you "
+  },
+  {
+    "bike_id": "03",
+    "title": "Electric Bike",
+    "img": "https://i.ibb.co/8957xSg/electric-bike.jpg",
+    "price": "50,000tk to 1,30,000tk ",
+    "condition": "recondition",
+    "description": "at the present condition of market , electric bike is new savior for a biker . it less cost more comfort . you don't need any fuel cost , just charge it ride as your wish ."
+  }
+]
