@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../../Context/AuthProvider";
 
 const SignUp = () => {
   const {
@@ -8,9 +9,30 @@ const SignUp = () => {
     formState: { errors },
     handleSubmit,
   } = useForm();
+  const { createUser, updateUser } = useContext(AuthContext);
+  const [signUpError, setSignUPError] = useState("");
 
   const handleSignUp = (data) => {
     console.log(data);
+    setSignUPError("");
+    createUser(data.email, data.password)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+
+        const userInfo = {
+          displayName: data.name,
+        };
+        updateUser(userInfo)
+          .then(() => {
+            // saveUser(data.name, data.email);
+          })
+          .catch((err) => console.log(err));
+      })
+      .catch((error) => {
+        console.log(error);
+        setSignUPError(error.message);
+      });
   };
 
   return (
@@ -73,12 +95,30 @@ const SignUp = () => {
             )}
           </div>
 
+          <div className="form-control w-full max-w-xs">
+            <label className="label">
+              <span className="label-text">Client Type</span>
+            </label>
+            <select
+              {...register("clientType", {
+                required: true,
+              })}
+              className="select input-bordered w-full max-w-xs"
+            >
+              <option disabled selected>
+                Choose your role
+              </option>
+              <option>User</option>
+              <option>Seller</option>
+            </select>
+          </div>
+
           <input
             className="btn btn-accent w-full mt-4"
             value="SignUp"
             type="submit"
           />
-          {/* {signUpError && <p className="text-red-600">{signUpError}</p>} */}
+          {signUpError && <p className="text-red-600">{signUpError}</p>}
         </form>
         <p>
           Already have an account?

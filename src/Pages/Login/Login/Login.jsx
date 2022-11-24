@@ -1,28 +1,32 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../../Context/AuthProvider";
 
 const Login = () => {
+  const [loginError, setLoginError] = useState("");
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
+  const { signIn } = useContext(AuthContext);
+
   const handleLogin = (data) => {
     console.log(data);
-    // setLoginError("");
+    setLoginError("");
 
-    // signIn(data.email, data.password)
-    //   .then((result) => {
-    //     const user = result.user;
-    //     console.log(user);
-    //     setLoginUserEmail(data.email);
-    //   })
-    //   .catch((error) => {
-    //     console.log(error.message);
-    //     setLoginError(error.message);
-    //   });
+    signIn(data.email, data.password)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        // setLoginUserEmail(data.email);
+      })
+      .catch((error) => {
+        console.log(error.message);
+        setLoginError(error.message);
+      });
   };
 
   return (
@@ -71,9 +75,9 @@ const Login = () => {
             value="Login"
             type="submit"
           />
-          {/* <div>
+          <div>
             {loginError && <p className="text-red-600">{loginError}</p>}
-          </div> */}
+          </div>
         </form>
         <p>
           New to Antique bike house{" "}
