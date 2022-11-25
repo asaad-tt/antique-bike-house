@@ -21,13 +21,13 @@ const DashboardLayout = () => {
           <ul className="menu p-4 w-80  text-base-content">
             {/* <!-- Sidebar content here --> */}
             <li>
-              <Link to="/dashboard">My Appointments</Link>
+              <Link to="/dashboard">My Orders</Link>
             </li>
             <li>
-              <Link to="/dashboard/allusers">All users</Link>
+              <Link to="/dashboard/allusers">Add a Product</Link>
             </li>
             <li>
-              <Link to="/dashboard/adddoctor">Add a doctor</Link>
+              <Link to="/dashboard/adddoctor">My Products</Link>
             </li>
             <li>
               <Link to="/dashboard/managedoctors">Manage Doctors</Link>

@@ -36,6 +36,7 @@ const BookingModal = ({ product, setProduct }) => {
       price,
       phone,
       meetingLocation,
+      img,
     };
 
     fetch("http://localhost:8000/bookings", {
