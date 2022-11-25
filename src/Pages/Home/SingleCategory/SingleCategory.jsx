@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import BookingModal from "./BookingModal/BookingModal";
 import CategoryOptions from "./CategoryOptions";
 
 const SingleCategory = () => {
   const category = useLoaderData();
+  const [product, setProduct] = useState(null);
   console.log(category);
 
   return (
@@ -14,10 +15,11 @@ const SingleCategory = () => {
           <CategoryOptions
             key={categoryCard._id}
             categoryCard={categoryCard}
+            setProduct={setProduct}
           ></CategoryOptions>
         ))}
       </div>
-      <BookingModal></BookingModal>
+      {product && <BookingModal product={product}></BookingModal>}
     </>
   );
 };

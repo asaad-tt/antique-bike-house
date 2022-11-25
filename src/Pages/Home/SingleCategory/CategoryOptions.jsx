@@ -1,6 +1,6 @@
 import React from "react";
 
-const CategoryOptions = ({ categoryCard }) => {
+const CategoryOptions = ({ categoryCard, setProduct }) => {
   const {
     title,
     name,
@@ -29,7 +29,11 @@ const CategoryOptions = ({ categoryCard }) => {
             <p>Condition: {condition}</p>
             <p>{description}</p>
           </div>
-          <label htmlFor="booking-modal" className="btn btn-primary mt-5">
+          <label
+            onClick={() => setProduct(categoryCard)}
+            htmlFor="booking-modal"
+            className="btn btn-primary mt-5"
+          >
             Book Now
           </label>
         </div>

@@ -1,6 +1,36 @@
-import React from "react";
+import React, { useContext } from "react";
+import { AuthContext } from "../../../../Context/AuthProvider";
 
-const BookingModal = () => {
+const BookingModal = ({ product }) => {
+  const { user } = useContext(AuthContext);
+  const {
+    title,
+    name,
+    img,
+    originalPrice,
+    resalePrice,
+    condition,
+    useDuration,
+    location,
+    postedTime,
+    sellersName,
+    description,
+  } = product;
+
+  const handleBooking = (event) => {
+    event.preventDefault();
+    const form = event.target;
+
+    const name = form.name.value;
+    const email = form.email.value;
+    const itemName = form.itemName.value;
+    const phone = form.phone.value;
+    const price = form.price.value;
+    const meetingLocation = form.meetingLocation.value;
+
+    console.log(name, email, itemName, phone, price, meetingLocation);
+  };
+
   return (
     <>
       <input type="checkbox" id="booking-modal" className="modal-toggle" />
@@ -12,13 +42,63 @@ const BookingModal = () => {
           >
             ✕
           </label>
-          <h3 className="text-lg font-bold">
-            Congratulations random Internet user!
-          </h3>
-          <p className="py-4">
-            You've been selected for a chance to get one year of subscription to
-            use Wikipedia for free!
-          </p>
+          <h3 className="text-lg font-bold">Category: {title}</h3>
+          <form
+            onSubmit={handleBooking}
+            className="grid grid-cols-1 gap-3 mt-10"
+          >
+            <input
+              name="name"
+              type="text"
+              defaultValue={user?.displayName}
+              placeholder="Your Name"
+              className="input w-full input-bordered"
+              disabled
+            />
+            <input
+              name="email"
+              type="email"
+              defaultValue={user?.email}
+              placeholder="Email Address"
+              className="input w-full input-bordered"
+              disabled
+            />
+            <input
+              name="itemName"
+              type="text"
+              placeholder="item name"
+              defaultValue={name}
+              className="input w-full input-bordered"
+              disabled
+            />
+            <input
+              name="price"
+              type="text"
+              placeholder="item price"
+              defaultValue={resalePrice}
+              className="input w-full input-bordered"
+              disabled
+            />
+            <input
+              name="phone"
+              type="text"
+              placeholder="Phone Number"
+              className="input w-full input-bordered"
+            />
+            <input
+              name="meetingLocation"
+              type="text"
+              placeholder="meeting location"
+              className="input w-full input-bordered"
+            />
+
+            <br />
+            <input
+              className="btn btn-accent w-full"
+              type="submit"
+              value="Submit"
+            />
+          </form>
         </div>
       </div>
     </>
