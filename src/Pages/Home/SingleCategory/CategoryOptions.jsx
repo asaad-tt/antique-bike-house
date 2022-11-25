@@ -26,8 +26,12 @@ const CategoryOptions = ({ categoryCard }) => {
             <p>Use Time: {useDuration}</p>
             <p>Posted Time: {postedTime}</p>
             <p>Seller Name: {sellersName}</p>
+            <p>Condition: {condition}</p>
             <p>{description}</p>
           </div>
+          <label htmlFor="booking-modal" className="btn btn-primary mt-5">
+            Book Now
+          </label>
         </div>
       </div>
       <div>
