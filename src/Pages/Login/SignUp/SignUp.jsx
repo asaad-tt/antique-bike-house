@@ -31,7 +31,7 @@ const SignUp = () => {
         };
         updateUser(userInfo)
           .then(() => {
-            // saveUser(data.name, data.email);
+            saveUser(data.name, data.email, data.role);
           })
           .catch((err) => console.log(err));
         navigate(from, { replace: true });
@@ -39,6 +39,21 @@ const SignUp = () => {
       .catch((error) => {
         console.log(error);
         setSignUPError(error.message);
+      });
+  };
+
+  const saveUser = (name, email, role) => {
+    const user = { name, email, role };
+    fetch("http://localhost:8000/users", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(user),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("save user", data);
       });
   };
 
@@ -118,12 +133,12 @@ const SignUp = () => {
               <span className="label-text">Client Type</span>
             </label>
             <select
-              {...register("clientType", {
+              {...register("role", {
                 required: true,
               })}
               className="select input-bordered w-full max-w-xs"
             >
-              <option>User</option>
+              <option>buyer</option>
               <option>Seller</option>
             </select>
           </div>
