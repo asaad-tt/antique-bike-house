@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { AuthContext } from "../../../Context/AuthProvider";
 
@@ -10,8 +10,12 @@ const SignUp = () => {
     formState: { errors },
     handleSubmit,
   } = useForm();
-  const { createUser, updateUser } = useContext(AuthContext);
+  const { createUser, updateUser, signInWithGoogle } = useContext(AuthContext);
   const [signUpError, setSignUPError] = useState("");
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const from = location.state?.from?.pathname || "/";
 
   const handleSignUp = (data) => {
     console.log(data);
@@ -30,11 +34,23 @@ const SignUp = () => {
             // saveUser(data.name, data.email);
           })
           .catch((err) => console.log(err));
+        navigate(from, { replace: true });
       })
       .catch((error) => {
         console.log(error);
         setSignUPError(error.message);
       });
+  };
+
+  const handleGoogleSign = () => {
+    signInWithGoogle()
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        toast.info("login success", { autoClose: 800 });
+        navigate(from, { replace: true });
+      })
+      .catch((error) => console.error(error));
   };
 
   return (
@@ -107,9 +123,6 @@ const SignUp = () => {
               })}
               className="select input-bordered w-full max-w-xs"
             >
-              <option disabled selected>
-                Choose your role
-              </option>
               <option>User</option>
               <option>Seller</option>
             </select>
@@ -129,7 +142,9 @@ const SignUp = () => {
           </Link>
         </p>
         <div className="divider">OR</div>
-        <button className="btn btn-outline w-full">CONTINUE WITH GOOGLE</button>
+        <button onClick={handleGoogleSign} className="btn btn-outline w-full">
+          CONTINUE WITH GOOGLE
+        </button>
       </div>
     </div>
   );
