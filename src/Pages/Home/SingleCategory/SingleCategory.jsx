@@ -19,7 +19,9 @@ const SingleCategory = () => {
           ></CategoryOptions>
         ))}
       </div>
-      {product && <BookingModal product={product}></BookingModal>}
+      {product && (
+        <BookingModal product={product} setProduct={setProduct}></BookingModal>
+      )}
     </>
   );
 };
