@@ -5,6 +5,7 @@ import Blog from "../../Pages/Blog/Blog";
 import AddProduct from "../../Pages/Dashboard/AddProduct/AddProduct";
 import Dashboard from "../../Pages/Dashboard/Dashboard";
 import MyOrders from "../../Pages/Dashboard/MyOrders/MyOrders";
+import DisplayError from "../../Pages/DisplayError/DisplayError";
 import Home from "../../Pages/Home/Home/Home";
 import SingleCategory from "../../Pages/Home/SingleCategory/SingleCategory";
 import Login from "../../Pages/Login/Login/Login";
@@ -15,6 +16,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Main></Main>,
+    errorElement: <DisplayError></DisplayError>,
     children: [
       {
         path: "/",
@@ -33,14 +35,14 @@ const router = createBrowserRouter([
         element: <Blog></Blog>,
       },
       {
-        path: "/categories/:id",
+        path: "/categories/:category",
         element: (
           <PrivateRoute>
             <SingleCategory></SingleCategory>
           </PrivateRoute>
         ),
         loader: ({ params }) => {
-          return fetch(`http://localhost:8000/categories/${params.id}`);
+          return fetch(`http://localhost:8000/categories/${params.category}`);
         },
       },
     ],
@@ -48,6 +50,7 @@ const router = createBrowserRouter([
   {
     path: "/dashboard",
     element: <DashboardLayout></DashboardLayout>,
+    errorElement: <DisplayError></DisplayError>,
     children: [
       {
         path: "/dashboard",

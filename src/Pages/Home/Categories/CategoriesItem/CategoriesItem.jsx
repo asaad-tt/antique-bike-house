@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const CategoriesItem = ({ category }) => {
+  console.log(category);
   const { _id, title, price, condition, img } = category;
   return (
     <div>
@@ -14,7 +15,7 @@ const CategoriesItem = ({ category }) => {
           <p>Condition: {condition}</p>
           <p className="font-bold">Price Starts: {price}</p>
           <div className="card-actions justify-end">
-            <Link to={`/categories/${_id}`} className="btn btn-primary">
+            <Link to={`/categories/${title}`} className="btn btn-primary">
               Explore All
             </Link>
           </div>
