@@ -1,11 +1,16 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import { toast } from "react-toastify";
+import Loading from "../../Loading/Loading";
 
 const AllSellers = () => {
   const url = `http://localhost:8000/buyerseller?role=seller`;
 
-  const { data: sellers = [] } = useQuery({
+  const {
+    data: sellers = [],
+    refetch,
+    isLoading,
+  } = useQuery({
     queryKey: ["sellers", "seller"],
     queryFn: async () => {
       const res = await fetch(url);
@@ -24,8 +29,13 @@ const AllSellers = () => {
       .then((data) => {
         console.log(data);
         toast.success("successfully deleted", { autoClose: 700 });
+        refetch();
       });
   };
+
+  if (isLoading) {
+    return <Loading></Loading>;
+  }
 
   return (
     <div className="overflow-x-auto">
