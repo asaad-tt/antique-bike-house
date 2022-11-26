@@ -139,7 +139,7 @@ const SignUp = () => {
               className="select input-bordered w-full max-w-xs"
             >
               <option>buyer</option>
-              <option>Seller</option>
+              <option>seller</option>
             </select>
           </div>
 
