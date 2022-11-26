@@ -34,7 +34,7 @@ const AddProduct = () => {
           location: data.location,
           name: data.name,
           phoneNumber: data.phoneNumber,
-          postedTime: data.postedTime,
+          postedTime: new Date().toLocaleString(),
           originalPrice: data.originalPrice,
           resalePrice: data.resalePrice,
           sellerName: user?.displayName,
@@ -55,7 +55,7 @@ const AddProduct = () => {
           .then((data) => {
             console.log(data);
             if (data.acknowledged) {
-              toast.info("product added successful");
+              toast.info("product added successful", { autoClose: 800 });
             }
           });
       });
@@ -173,7 +173,7 @@ const AddProduct = () => {
               className="input input-bordered w-full max-w-xs"
             />
           </div>
-          <div className="form-control w-full max-w-xs">
+          {/* <div className="form-control w-full max-w-xs">
             <label className="label">
               <span className="label-text">Posted Time</span>
             </label>
@@ -184,7 +184,7 @@ const AddProduct = () => {
               })}
               className="input input-bordered w-full max-w-xs"
             />
-          </div>
+          </div> */}
           <div className="form-control w-full max-w-xs">
             <label className="label">
               <span className="label-text">Seller Name</span>

@@ -17,6 +17,8 @@ const MyOrders = () => {
     },
   });
 
+  console.log(bookings);
+
   return (
     <div>
       <h3 className="text-3xl font-bold">My Orders</h3>

@@ -15,11 +15,11 @@ const CategoryOptions = ({ categoryCard, setProduct }) => {
     description,
   } = categoryCard;
   return (
-    <div className="hero min-h-screen bg-base-200">
+    <div className="hero py-5 bg-base-200">
       <div className="hero-content flex-col lg:flex-row-reverse">
         <img src={image} alt="" className="max-w-sm rounded-lg shadow-2xl" />
         <div>
-          <h1 className="text-5xl font-bold">{name}</h1>
+          <h1 className="text-5xl font-bold mb-5">{name}</h1>
           <div className="text-xl">
             <p>Location: {location}</p>
             <p>Original Price: {originalPrice}</p>
@@ -28,7 +28,7 @@ const CategoryOptions = ({ categoryCard, setProduct }) => {
             <p>Posted Time: {postedTime}</p>
             <p>Seller Name: {sellerName}</p>
             <p>Condition: {condition}</p>
-            <p>{description}</p>
+            <p>Description: {description}</p>
           </div>
           <label
             onClick={() => setProduct(categoryCard)}
