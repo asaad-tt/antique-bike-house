@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 import Loading from "../../Loading/Loading";
 
 const AllSellers = () => {
-  const url = `https://antique-bike-house-server.vercel.app/buyerseller?role=seller`;
+  const url = `http://localhost:8000/buyerseller?role=seller`;
 
   const {
     data: sellers = [],
@@ -22,7 +22,7 @@ const AllSellers = () => {
   console.log(sellers);
 
   const handleDelete = (id) => {
-    fetch(`https://antique-bike-house-server.vercel.app/buyerseller/${id}`, {
+    fetch(`http://localhost:8000/buyerseller/${id}`, {
       method: "Delete",
     })
       .then((res) => res.json())

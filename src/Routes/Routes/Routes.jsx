@@ -46,9 +46,7 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) => {
-          return fetch(
-            `https://antique-bike-house-server.vercel.app/categories/${params.category}`
-          );
+          return fetch(`http://localhost:8000/categories/${params.category}`);
         },
       },
     ],
@@ -82,9 +80,7 @@ const router = createBrowserRouter([
         path: "/dashboard/payment/:id",
         element: <Payment></Payment>,
         loader: ({ params }) => {
-          return fetch(
-            `https://antique-bike-house-server.vercel.app/bookings/${params.id}`
-          );
+          return fetch(`http://localhost:8000/bookings/${params.id}`);
         },
       },
     ],

@@ -44,7 +44,7 @@ const SignUp = () => {
 
   const saveUser = (name, email, role) => {
     const user = { name, email, role };
-    fetch("https://antique-bike-house-server.vercel.app/users", {
+    fetch("http://localhost:8000/users", {
       method: "POST",
       headers: {
         "content-type": "application/json",

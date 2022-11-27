@@ -1,10 +1,12 @@
 import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { AuthContext } from "../../../Context/AuthProvider";
 
 const AddProduct = () => {
   const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
   const {
     register,
     formState: { errors },
@@ -38,13 +40,14 @@ const AddProduct = () => {
           originalPrice: data.originalPrice,
           resalePrice: data.resalePrice,
           sellerName: user?.displayName,
+          email: user?.email,
           purchaseDate: data.purchaseDate,
         };
 
         console.log(Products);
 
         // save product data to database
-        fetch("https://antique-bike-house-server.vercel.app/products", {
+        fetch("http://localhost:8000/products", {
           method: "POST",
           headers: {
             "content-type": "application/json",
@@ -57,6 +60,7 @@ const AddProduct = () => {
             if (data.acknowledged) {
               toast.info("product added successful", { autoClose: 800 });
             }
+            navigate("/dashboard/myProducts");
           });
       });
   };

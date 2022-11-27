@@ -1,23 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
-import Loading from "../../Loading/Loading";
 
 const CheckoutForm = ({ booking }) => {
-  // const [isLoading, setIsLoading] = useState(false);
   const stripe = useStripe();
   const elements = useElements();
   const [cardError, setCardError] = useState();
   const [clientSecret, setClientSecret] = useState("");
   const { price } = booking;
+  console.log(price);
 
-  // useEffect(() => {
-  //   setLoading(true);
-  //   setTimeout(() => {
-  //     setLoading(false);
-  //   }, 2000);
-  // }, []);
-
-  /*  useEffect(() => {
+  useEffect(() => {
     // Create PaymentIntent as soon as the page loads
 
     fetch("http://localhost:8000/create-payment-intent", {
@@ -30,15 +22,13 @@ const CheckoutForm = ({ booking }) => {
     })
       .then((res) => res.json())
       .then((data) => setClientSecret(data.clientSecret));
-  }, [price]); */
+  }, [price]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (!stripe || !elements) {
       return;
     }
-
-    // setIsLoading(true);
 
     const card = elements.getElement(CardElement);
     if (card == null) {
@@ -55,12 +45,7 @@ const CheckoutForm = ({ booking }) => {
     } else {
       setCardError("");
     }
-    // setIsLoading(false);
   };
-
-  // if (loading) {
-  //   <Loading></Loading>;
-  // }
 
   return (
     <div>
