@@ -1,12 +1,25 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
+import Loading from "../../Loading/Loading";
 import BookingModal from "./BookingModal/BookingModal";
 import CategoryOptions from "./CategoryOptions";
 
 const SingleCategory = () => {
   const category = useLoaderData();
   const [product, setProduct] = useState(null);
+  const [loading, setLoading] = useState(false);
   console.log(category);
+
+  useEffect(() => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+    }, 2000);
+  }, []);
+
+  if (loading) {
+    return <Loading></Loading>;
+  }
 
   return (
     <>

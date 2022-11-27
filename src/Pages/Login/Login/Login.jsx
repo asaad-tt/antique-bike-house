@@ -1,15 +1,25 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { AuthContext } from "../../../Context/AuthProvider";
+import Loading from "../../Loading/Loading";
 
 const Login = () => {
   const [loginError, setLoginError] = useState("");
+  const [loading, setLoading] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
 
   const from = location.state?.from?.pathname || "/";
+
+  useEffect(() => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+    }, 2000);
+  }, []);
+
   const {
     register,
     handleSubmit,
@@ -47,6 +57,10 @@ const Login = () => {
       })
       .catch((error) => console.error(error));
   };
+
+  if (loading) {
+    return <Loading></Loading>;
+  }
 
   return (
     <div className="h-[800px] flex justify-center items-center">

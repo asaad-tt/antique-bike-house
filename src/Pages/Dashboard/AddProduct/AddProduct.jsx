@@ -44,7 +44,7 @@ const AddProduct = () => {
         console.log(Products);
 
         // save product data to database
-        fetch("http://localhost:8000/products", {
+        fetch("https://antique-bike-house-server.vercel.app/products", {
           method: "POST",
           headers: {
             "content-type": "application/json",

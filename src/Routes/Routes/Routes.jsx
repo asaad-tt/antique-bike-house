@@ -8,6 +8,7 @@ import AllSellers from "../../Pages/Dashboard/AllSellers/AllSellers";
 import Dashboard from "../../Pages/Dashboard/Dashboard";
 import MyOrders from "../../Pages/Dashboard/MyOrders/MyOrders";
 import MyProducts from "../../Pages/Dashboard/MyProducts/MyProducts";
+import Payment from "../../Pages/Dashboard/Payment/Payment";
 import DisplayError from "../../Pages/DisplayError/DisplayError";
 import Home from "../../Pages/Home/Home/Home";
 import SingleCategory from "../../Pages/Home/SingleCategory/SingleCategory";
@@ -45,7 +46,9 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) => {
-          return fetch(`http://localhost:8000/categories/${params.category}`);
+          return fetch(
+            `https://antique-bike-house-server.vercel.app/categories/${params.category}`
+          );
         },
       },
     ],
@@ -74,6 +77,15 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/AllBuyers",
         element: <AllBuyers></AllBuyers>,
+      },
+      {
+        path: "/dashboard/payment/:id",
+        element: <Payment></Payment>,
+        loader: ({ params }) => {
+          return fetch(
+            `https://antique-bike-house-server.vercel.app/bookings/${params.id}`
+          );
+        },
       },
     ],
   },
