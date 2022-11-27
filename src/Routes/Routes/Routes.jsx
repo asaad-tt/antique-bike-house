@@ -14,6 +14,9 @@ import Home from "../../Pages/Home/Home/Home";
 import SingleCategory from "../../Pages/Home/SingleCategory/SingleCategory";
 import Login from "../../Pages/Login/Login/Login";
 import SignUp from "../../Pages/Login/SignUp/SignUp";
+import AdminRoute from "../AdminRoute/AdminRoute";
+import SellerRoute from "../AdminRoute/SellerRoute";
+
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
 const router = createBrowserRouter([
@@ -46,7 +49,7 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) => {
-          return fetch(`http://localhost:8000/categories/${params.category}`);
+          return fetch(`http://localhost:5000/categories/${params.category}`);
         },
       },
     ],
@@ -62,25 +65,41 @@ const router = createBrowserRouter([
       },
       {
         path: "/dashboard/addProduct",
-        element: <AddProduct></AddProduct>,
+        element: (
+          <SellerRoute>
+            <AddProduct></AddProduct>
+          </SellerRoute>
+        ),
       },
       {
         path: "/dashboard/myProducts",
-        element: <MyProducts></MyProducts>,
+        element: (
+          <SellerRoute>
+            <MyProducts></MyProducts>
+          </SellerRoute>
+        ),
       },
       {
         path: "/dashboard/allSellers",
-        element: <AllSellers></AllSellers>,
+        element: (
+          <AdminRoute>
+            <AllSellers></AllSellers>
+          </AdminRoute>
+        ),
       },
       {
         path: "/dashboard/AllBuyers",
-        element: <AllBuyers></AllBuyers>,
+        element: (
+          <AdminRoute>
+            <AllBuyers></AllBuyers>
+          </AdminRoute>
+        ),
       },
       {
         path: "/dashboard/payment/:id",
         element: <Payment></Payment>,
         loader: ({ params }) => {
-          return fetch(`http://localhost:8000/bookings/${params.id}`);
+          return fetch(`http://localhost:5000/bookings/${params.id}`);
         },
       },
     ],

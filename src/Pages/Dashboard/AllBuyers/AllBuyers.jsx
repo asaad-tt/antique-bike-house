@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 import Loading from "../../Loading/Loading";
 
 const AllBuyers = () => {
-  const url = `http://localhost:8000/buyerseller?role=buyer`;
+  const url = `http://localhost:5000/buyerseller?role=buyer`;
 
   const {
     data: buyers = [],
@@ -22,7 +22,7 @@ const AllBuyers = () => {
   console.log(buyers);
 
   const handleDelete = (id) => {
-    fetch(`http://localhost:8000/buyerseller/${id}`, {
+    fetch(`http://localhost:5000/buyerseller/${id}`, {
       method: "Delete",
     })
       .then((res) => res.json())

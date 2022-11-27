@@ -7,7 +7,7 @@ import Loading from "../../Loading/Loading";
 const MyProducts = () => {
   const { user } = useContext(AuthContext);
 
-  const url = `http://localhost:8000/products?email=${user?.email}`;
+  const url = `http://localhost:5000/products?email=${user?.email}`;
 
   const {
     data: products = [],

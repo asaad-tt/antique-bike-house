@@ -20,7 +20,7 @@ const OrderItems = ({ booking }) => {
       ) : (
         <div className="card  w-96 bg-base-100 shadow-xl">
           <figure>
-            <img src={image} alt="Shoes" />
+            <img src={image} className="h-60 w-full" alt="Shoes" />
           </figure>
           <div className="card-body">
             <h2 className="card-title">{itemName}</h2>
