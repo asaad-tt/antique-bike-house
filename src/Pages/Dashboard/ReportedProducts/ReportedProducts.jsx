@@ -12,16 +12,21 @@ const ReportedProducts = () => {
   } = useQuery({
     queryKey: ["reportedProducts"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/reportedProducts");
+      const res = await fetch(
+        "https://antique-bike-house-server.vercel.app/reportedProducts"
+      );
       const data = await res.json();
       return data;
     },
   });
 
   const handleDeleteReportedProduct = (report) => {
-    fetch(`http://localhost:5000/reportedProducts/${report._id}`, {
-      method: "DELETE",
-    })
+    fetch(
+      `https://antique-bike-house-server.vercel.app/reportedProducts/${report._id}`,
+      {
+        method: "DELETE",
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data.deletedCount > 0) {

@@ -34,7 +34,7 @@ const CategoryOptions = ({ categoryCard, setProduct }) => {
       resalePrice,
     };
 
-    fetch("http://localhost:5000/reports", {
+    fetch("https://antique-bike-house-server.vercel.app/reports", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -92,16 +92,3 @@ const CategoryOptions = ({ categoryCard, setProduct }) => {
 };
 
 export default CategoryOptions;
-
-// {
-//   /* <div className="grid grid-cols-2 gap-10">
-//   <div className="flex justify-center items-center ml-10">
-//     <div>
-//       <h1 className="text-3xl font-bold">{name}</h1>
-//     </div>
-//   </div>
-//   <div>
-//     <img className="max-w-sm rounded-lg shadow-2xl" src={image} alt="" />
-//   </div>
-// </div>; */
-// }

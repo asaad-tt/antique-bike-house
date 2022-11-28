@@ -5,7 +5,7 @@ import Loading from "../../Loading/Loading";
 import { GoVerified } from "react-icons/go";
 
 const AllSellers = () => {
-  const url = `http://localhost:5000/buyerseller?role=seller`;
+  const url = `https://antique-bike-house-server.vercel.app/buyerseller?role=seller`;
 
   const {
     data: sellers = [],
@@ -26,7 +26,7 @@ const AllSellers = () => {
   console.log(isVerified);
 
   const handleDelete = (id) => {
-    fetch(`http://localhost:5000/buyerseller/${id}`, {
+    fetch(`https://antique-bike-house-server.vercel.app/buyerseller/${id}`, {
       method: "Delete",
     })
       .then((res) => res.json())
@@ -39,9 +39,12 @@ const AllSellers = () => {
 
   // seller verify process
   const handleVerifySeller = (seller) => {
-    fetch(`http://localhost:5000/verifySeller/${seller.email}`, {
-      method: "PUT",
-    })
+    fetch(
+      `https://antique-bike-house-server.vercel.app/verifySeller/${seller.email}`,
+      {
+        method: "PUT",
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data.modifiedCount > 0) {

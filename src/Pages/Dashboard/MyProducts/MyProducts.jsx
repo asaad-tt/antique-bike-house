@@ -7,7 +7,7 @@ import Loading from "../../Loading/Loading";
 const MyProducts = () => {
   const { user } = useContext(AuthContext);
 
-  const url = `http://localhost:5000/products?email=${user?.email}`;
+  const url = `https://antique-bike-house-server.vercel.app/products?email=${user?.email}`;
 
   const {
     data: products = [],
@@ -25,7 +25,7 @@ const MyProducts = () => {
   console.log(products);
 
   const handleDelete = (id) => {
-    fetch(`http://localhost:8000/products/${id}`, {
+    fetch(`https://antique-bike-house-server.vercel.app/products/${id}`, {
       method: "Delete",
     })
       .then((res) => res.json())

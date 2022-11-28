@@ -7,7 +7,7 @@ const useBuyer = (email) => {
   console.log(isBuyer);
   useEffect(() => {
     if (email) {
-      fetch(`http://localhost:5000/users/buyer/${email}`)
+      fetch(`https://antique-bike-house-server.vercel.app/users/buyer/${email}`)
         .then((res) => res.json())
         .then((data) => {
           console.log(data);

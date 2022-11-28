@@ -55,7 +55,7 @@ const SignUp = () => {
 
   const saveUser = (name, email, role) => {
     const user = { name, email, role };
-    fetch("http://localhost:5000/users", {
+    fetch("https://antique-bike-house-server.vercel.app/users", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -68,17 +68,6 @@ const SignUp = () => {
         setCreatedUserEmail(email);
       });
   };
-
-  // const getUserToken = (email) => {
-  //   fetch(`http://localhost:5000/jwt?email=${email}`)
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       if (data.accessToken) {
-  //         localStorage.setItem("accessToken", data.accessToken);
-  //         navigate("/");
-  //       }
-  //     });
-  // };
 
   const handleGoogleSign = () => {
     signInWithGoogle()

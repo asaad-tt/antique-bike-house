@@ -1,3 +1,24 @@
+### My Project Details:
+
+# Project Name:
+
+\*\* Antique Bike House
+
+# Project Live Link:
+
+# Project working process:
+
+** For this Project I use tailwind and its library component daisyUi
+** At first i make some Routes . Also make Private route . i added Admin route for admin access.
+** In Home Page i Show Header Navbar, slider section,categories section, Service section, About section , Working Process etc..
+** I used header and footer as shared things , which can show in every pages
+** I made server for backend , also i create a database in Mongodb.
+** I stored data in mongodb database and from there i use data as my necessity.
+** i make a blog route , there i answered some important Question about database, programming language etc..
+** i create custom hook so that i can make project in a comfort way
+
+After completing the project i deploy the client side to the firebase and backend site to vercel.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
