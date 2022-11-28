@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import { toast } from "react-toastify";
 import Loading from "../../Loading/Loading";
+import { GoVerified } from "react-icons/go";
 
 const AllSellers = () => {
   const url = `http://localhost:5000/buyerseller?role=seller`;
@@ -21,6 +22,9 @@ const AllSellers = () => {
 
   console.log(sellers);
 
+  const { isVerified } = sellers;
+  console.log(isVerified);
+
   const handleDelete = (id) => {
     fetch(`http://localhost:5000/buyerseller/${id}`, {
       method: "Delete",
@@ -30,6 +34,20 @@ const AllSellers = () => {
         console.log(data);
         toast.success("successfully deleted", { autoClose: 700 });
         refetch();
+      });
+  };
+
+  // seller verify process
+  const handleVerifySeller = (seller) => {
+    fetch(`http://localhost:5000/verifySeller/${seller.email}`, {
+      method: "PUT",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.modifiedCount > 0) {
+          toast.success(`${seller.name} is now a verified seller`);
+          refetch();
+        }
       });
   };
 
@@ -45,6 +63,7 @@ const AllSellers = () => {
             <th></th>
             <th>Name</th>
             <th>Email</th>
+            <th>Verify</th>
             <th>Action</th>
           </tr>
         </thead>
@@ -54,6 +73,28 @@ const AllSellers = () => {
               <th>{i + 1}</th>
               <td>{seller.name}</td>
               <td>{seller.email}</td>
+
+              {seller?.isVerified === true ? (
+                <>
+                  <td>
+                    <button className="btn btn-xs bg-green-600">
+                      {" "}
+                      <GoVerified className="text-blue-700"></GoVerified>
+                      Verified
+                    </button>
+                  </td>
+                </>
+              ) : (
+                <td>
+                  <button
+                    onClick={() => handleVerifySeller(seller)}
+                    className="btn btn-xs bg-teal-400"
+                  >
+                    Verify Seller
+                  </button>
+                </td>
+              )}
+
               <td>
                 <button
                   onClick={() => handleDelete(seller._id)}

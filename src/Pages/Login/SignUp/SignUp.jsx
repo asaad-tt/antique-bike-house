@@ -1,8 +1,9 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { AuthContext } from "../../../Context/AuthProvider";
+import useToken from "../../../hooks/useToken";
 
 const SignUp = () => {
   const {
@@ -10,12 +11,22 @@ const SignUp = () => {
     formState: { errors },
     handleSubmit,
   } = useForm();
+
   const { createUser, updateUser, signInWithGoogle } = useContext(AuthContext);
   const [signUpError, setSignUPError] = useState("");
+
   const location = useLocation();
   const navigate = useNavigate();
-
   const from = location.state?.from?.pathname || "/";
+
+  //--- use token use & for verification  st---
+  const [createdUserEmail, setCreatedUserEmail] = useState("");
+  const [token] = useToken(createdUserEmail);
+
+  if (token) {
+    navigate("/");
+  }
+  //--- use token use & for verification ed---
 
   const handleSignUp = (data) => {
     console.log(data);
@@ -34,7 +45,7 @@ const SignUp = () => {
             saveUser(data.name, data.email, data.role);
           })
           .catch((err) => console.log(err));
-        navigate(from, { replace: true });
+        // navigate(from, { replace: true });
       })
       .catch((error) => {
         console.log(error);
@@ -54,8 +65,20 @@ const SignUp = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log("save user", data);
+        setCreatedUserEmail(email);
       });
   };
+
+  // const getUserToken = (email) => {
+  //   fetch(`http://localhost:5000/jwt?email=${email}`)
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       if (data.accessToken) {
+  //         localStorage.setItem("accessToken", data.accessToken);
+  //         navigate("/");
+  //       }
+  //     });
+  // };
 
   const handleGoogleSign = () => {
     signInWithGoogle()

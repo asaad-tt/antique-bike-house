@@ -5,16 +5,20 @@ import Blog from "../../Pages/Blog/Blog";
 import AddProduct from "../../Pages/Dashboard/AddProduct/AddProduct";
 import AllBuyers from "../../Pages/Dashboard/AllBuyers/AllBuyers";
 import AllSellers from "../../Pages/Dashboard/AllSellers/AllSellers";
-import Dashboard from "../../Pages/Dashboard/Dashboard";
+import Dashboard from "../../Pages/Dashboard/Dashboard/Dashboard";
+
 import MyOrders from "../../Pages/Dashboard/MyOrders/MyOrders";
 import MyProducts from "../../Pages/Dashboard/MyProducts/MyProducts";
 import Payment from "../../Pages/Dashboard/Payment/Payment";
+import ReportedProducts from "../../Pages/Dashboard/ReportedProducts/ReportedProducts";
 import DisplayError from "../../Pages/DisplayError/DisplayError";
 import Home from "../../Pages/Home/Home/Home";
 import SingleCategory from "../../Pages/Home/SingleCategory/SingleCategory";
 import Login from "../../Pages/Login/Login/Login";
 import SignUp from "../../Pages/Login/SignUp/SignUp";
 import AdminRoute from "../AdminRoute/AdminRoute";
+import BuyerRoute from "../AdminRoute/BuyerRoute";
+
 import SellerRoute from "../AdminRoute/SellerRoute";
 
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
@@ -56,12 +60,24 @@ const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element: <DashboardLayout></DashboardLayout>,
+    element: (
+      <PrivateRoute>
+        <DashboardLayout></DashboardLayout>
+      </PrivateRoute>
+    ),
     errorElement: <DisplayError></DisplayError>,
     children: [
       {
         path: "/dashboard",
-        element: <MyOrders></MyOrders>,
+        element: <Dashboard></Dashboard>,
+      },
+      {
+        path: "/dashboard/myOrders",
+        element: (
+          <BuyerRoute>
+            <MyOrders></MyOrders>
+          </BuyerRoute>
+        ),
       },
       {
         path: "/dashboard/addProduct",
@@ -92,6 +108,14 @@ const router = createBrowserRouter([
         element: (
           <AdminRoute>
             <AllBuyers></AllBuyers>
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "/dashboard/reports",
+        element: (
+          <AdminRoute>
+            <ReportedProducts></ReportedProducts>
           </AdminRoute>
         ),
       },

@@ -14,8 +14,8 @@ const Banner = () => {
         </div>
         <div className="absolute flex justify-end transform -translate-y-1/2 left-24 top-1/4">
           <h1 className="text-5xl  banner_title font-bold text-white">
-            Classic <strong className="text-orange-800">vespa</strong> , what
-            you always want in <br />
+            Classic <strong className="text-teal-400">vespa</strong> , what you
+            always want in <br />
             your collection
           </h1>
         </div>
@@ -39,7 +39,7 @@ const Banner = () => {
         <div className="absolute flex justify-end transform -translate-y-1/2 left-24 top-1/4">
           <h1 className="text-5xl  banner_title font-bold text-white">
             Everyone's Dream{" "}
-            <strong className="text-orange-800">Royal Enfield</strong> , <br />
+            <strong className="text-teal-400">Royal Enfield</strong> , <br />
             when its Your doorstep !!
           </h1>
         </div>
@@ -62,7 +62,7 @@ const Banner = () => {
         </div>
         <div className="absolute flex justify-end transform -translate-y-1/2 left-24 top-1/4">
           <h1 className="text-5xl  banner_title font-bold text-white">
-            <strong className="text-orange-400">Gixxer</strong> New generation
+            <strong className="text-teal-400">Gixxer</strong> New generation
             monster <br />
             now near your hands !!
           </h1>
@@ -86,7 +86,7 @@ const Banner = () => {
         </div>
         <div className="absolute flex justify-end transform -translate-y-1/2 left-24 top-1/4">
           <h1 className="text-5xl  banner_title font-bold text-white">
-            <strong className="text-orange-800">Aprilla</strong> can fulfil your
+            <strong className="text-teal-400">Aprilla</strong> can fulfil your
             dream <br />
             get it before you loose it !!
           </h1>
