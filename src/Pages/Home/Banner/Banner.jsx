@@ -3,7 +3,7 @@ import "./Banner.css";
 
 const Banner = () => {
   return (
-    <div className="carousel w-full ">
+    <div className="carousel w-full rounded-lg">
       <div id="slide1" className="carousel-item relative w-full">
         <div className="carousel-img">
           <img

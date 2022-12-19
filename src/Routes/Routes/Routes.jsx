@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import DashboardLayout from "../../Layout/DashboardLayout/DashboardLayout";
 import Main from "../../Layout/Main/Main";
+import About from "../../Pages/About/About";
 import Blog from "../../Pages/Blog/Blog";
 import AddProduct from "../../Pages/Dashboard/AddProduct/AddProduct";
 import AllBuyers from "../../Pages/Dashboard/AllBuyers/AllBuyers";
@@ -44,6 +45,10 @@ const router = createBrowserRouter([
       {
         path: "/blog",
         element: <Blog></Blog>,
+      },
+      {
+        path: "/about",
+        element: <About></About>,
       },
       {
         path: "/categories/:category",
@@ -126,7 +131,7 @@ const router = createBrowserRouter([
         element: <Payment></Payment>,
         loader: ({ params }) => {
           return fetch(
-            `https://antique-bike-house-server.vercel.app/${params.id}`
+            `https://antique-bike-house-server.vercel.app/bookings/${params.id}`
           );
         },
       },

@@ -7,10 +7,11 @@ import Loading from "../../Loading/Loading";
 
 const Payment = () => {
   const booking = useLoaderData();
-  const navigation = useNavigation();
-  console.log(booking);
-  const { itemName, price } = booking;
 
+  const navigation = useNavigation();
+
+  const { itemName, price } = booking;
+  console.log(price);
   if (navigation.state === "loading") {
     return <Loading></Loading>;
   }
@@ -20,10 +21,11 @@ const Payment = () => {
   console.log(stripePromise);
 
   return (
-    <div>
-      <h2 className="text-3xl font-semibold">Booing for {itemName}</h2>
+    <div className="ml-5">
+      <h2 className="text-3xl font-semibold">BooKing for {itemName}</h2>
       <p>
         You are about to pay total tk. <strong>{price}</strong>
+        for this is payment
       </p>
       <div className="w-96 my-6">
         <Elements stripe={stripePromise}>

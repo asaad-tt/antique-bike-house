@@ -8,7 +8,7 @@ const MyOrders = () => {
 
   const url = `https://antique-bike-house-server.vercel.app/bookings?email=${user?.email}`;
 
-  const { data: bookings = [] } = useQuery({
+  const { data: bookings = [], refetch } = useQuery({
     queryKey: ["bookings", user?.email],
     queryFn: async () => {
       const res = await fetch(url, {
@@ -17,6 +17,7 @@ const MyOrders = () => {
         },
       });
       const data = await res.json();
+      refetch();
       return data;
     },
   });
@@ -25,8 +26,8 @@ const MyOrders = () => {
 
   return (
     <div>
-      <h3 className="text-3xl font-bold">My Orders</h3>
-      <div className="grid grid-cols-1 lg:grid-cols-2 md:grid-cols-2 gap-5 py-10">
+      <h3 className="text-3xl ml-4 font-bold">My Orders</h3>
+      <div className="grid grid-cols-1 ml-5 lg:grid-cols-2 md:grid-cols-2 gap-5 py-10">
         {bookings.map((booking) => (
           <OrderItems key={booking._id} booking={booking}></OrderItems>
         ))}

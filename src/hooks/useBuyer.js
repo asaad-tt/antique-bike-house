@@ -4,7 +4,7 @@ const useBuyer = (email) => {
   console.log(email);
   const [isBuyer, setIsBuyer] = useState(false);
   const [isBuyerLoading, setIsBuyerLoading] = useState(true);
-  console.log(isBuyer);
+  // console.log(isBuyer);
   useEffect(() => {
     if (email) {
       fetch(`https://antique-bike-house-server.vercel.app/users/buyer/${email}`)

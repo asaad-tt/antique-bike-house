@@ -5,7 +5,7 @@ import bike from "./lf20_on5CEa.json";
 const Service = () => {
   return (
     <div>
-      <h5 className="text-orange-500 text-center font-bold text-xl mt-10 tracking-[10px]">
+      <h5 className="text-teal-500 text-center font-bold text-xl mt-10 tracking-[10px]">
         Services
       </h5>
       <div className=" ">

@@ -4,7 +4,7 @@ const useSeller = (email) => {
   console.log(email);
   const [isSeller, setIsSeller] = useState(false);
   const [isSellerLoading, setIsSellerLoading] = useState(true);
-  console.log(isSeller);
+  // console.log(isSeller);
   useEffect(() => {
     if (email) {
       fetch(

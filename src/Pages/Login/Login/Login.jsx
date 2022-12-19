@@ -1,3 +1,4 @@
+import { GoogleAuthProvider } from "firebase/auth";
 import React, { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router-dom";
@@ -13,6 +14,7 @@ const Login = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const [token] = useToken(loginUserEmail);
+  // const googleProvider = new GoogleAuthProvider();
 
   const from = location.state?.from?.pathname || "/";
 
@@ -55,14 +57,32 @@ const Login = () => {
 
   // ------ login with google ----------
   const handleGoogleSign = () => {
+    const role = "buyer";
+
     signInWithGoogle()
       .then((result) => {
         const user = result.user;
         console.log(user);
+        saveGoogleUser(user?.displayName, user?.email, role);
         toast.info("login success", { autoClose: 800 });
         navigate(from, { replace: true });
       })
       .catch((error) => console.error(error));
+  };
+
+  const saveGoogleUser = (name, email, role) => {
+    const userData = { name, email, role };
+    fetch(`http://localhost:5000/googleUsers/${email}`, {
+      method: "PUT",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(userData),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      });
   };
 
   if (loading) {
@@ -72,7 +92,7 @@ const Login = () => {
   return (
     <div className="h-[800px] flex justify-center items-center">
       <div className="w-96 p-7">
-        <h2 className="text-xl">login</h2>
+        <h2 className="text-xl text-teal-400">Login</h2>
         <form onSubmit={handleSubmit(handleLogin)}>
           <div className="form-control w-full max-w-xs">
             <label className="label">

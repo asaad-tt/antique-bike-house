@@ -4,7 +4,7 @@ const useAdmin = (email) => {
   // console.log(email);
   const [isAdmin, setIsAdmin] = useState(false);
   const [isAdminLoading, setIsAdminLoading] = useState(true);
-  console.log(isAdmin);
+  // console.log(isAdmin);
   useEffect(() => {
     if (email) {
       fetch(`https://antique-bike-house-server.vercel.app/users/admin/${email}`)

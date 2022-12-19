@@ -22,7 +22,7 @@ const Categories = () => {
 
   return (
     <div className="py-10">
-      <h5 className="text-orange-500 text-center font-bold text-xl mb-10 tracking-[10px]">
+      <h5 className="text-teal-400 text-center font-bold text-xl mb-10 tracking-[10px]">
         categories
       </h5>
       <div className="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-5">
